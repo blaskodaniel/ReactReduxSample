@@ -1,26 +1,17 @@
-const user = (state = [], action:any) => {
-    switch (action.type) {
-      case 'LOGIN_USER':
-        return [
-          ...state,
-          {
-            id: action.id,
-            username: action.username,
-            authenticate: true
-          }
-        ]
-      case 'LOGOUT_USER':
-        return [
-            ...state,
-            {
-              id: null,
-              username: null,
-              authenticate: false
-            }
-          ]
-      default:
-        return state
-    }
+const user = (state = { username: 'Visitor', authenticate: false }, action: any) => {
+  const newState = { ...state };
+  switch (action.type) {
+    case 'LOGIN_USER':
+      newState.username = action.username;
+      newState.authenticate = true;
+      return newState;
+    case 'LOGOUT_USER':
+      newState.username = action.username;
+      newState.authenticate = false;
+      return newState;
+    default:
+      return newState
   }
-  
-  export default user
+}
+
+export default user

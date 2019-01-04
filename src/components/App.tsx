@@ -1,44 +1,59 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as action from '../store/actions/index';
+// import { bindActionCreators } from 'redux';
+// import * as action from '../store/actions/index';
+import Navigation from './Navigation';
+import Main from './Main';
 
+// Interfaces:
+interface IState {
+  test: string;
+  something: string;
+  thisnumber: number;
+}
+
+// Amit kapunk a store-ból
 const mapStateToProps = (state: any) => {
+  console.log("AppComponent: " + JSON.stringify(state))
   return {
-    something: 'State',
+    age: state.testreducer.age,
+    loginstate: state.user.authenticate
   }
 }
 
+// Amit beküldünk a store-ba
 const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({
-    login: action.Login,
-    logout: action.Logout
-  }, dispatch)
+  return {
+    increment: () => dispatch({ type: 'INC' }),
+    decrement: () => dispatch({ type: 'DEC' })
+  }
 }
 
-class App extends React.Component<any,any> {
-  constructor(props:any){
+class App extends React.Component<any, IState> {
+  constructor(props: any) {
     super(props);
     this.state = {
-      test: ''
+      test: 'default state',
+      something: '',
+      thisnumber: 0
     };
     this.userlogin = this.userlogin.bind(this);
   }
 
   public userlogin = () => {
-    this.setState({test:'Valami'});
-    this.props.login();
+    this.setState({ test: 'Valami' });
   }
 
   public render() {
     return (
-      <div>
-        <button onClick={this.userlogin}>Do it</button>
-        <p>{this.state.test}</p>
-        <p>{this.props.something}</p>
+      <div className="container">
+        <div className="row">
+          <Navigation />
+          <Main />
+        </div>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
