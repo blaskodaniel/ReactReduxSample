@@ -6,7 +6,7 @@ import * as AuthActions from '../store/actions/index';
 
 // Amit kapunk a store-ból
 const mapStateToProps = (state: any) => {
-    console.log("LoginComponent: " + JSON.stringify(state))
+    // console.log("LoginComponent: " + JSON.stringify(state))
     return {
         username: state.user.username,
         loginstatus: state.user.authenticate
@@ -32,25 +32,7 @@ class Login extends React.Component<any, any>{
         }
         return (
             <Grid container={true} justify={"center"} alignItems={"center"} direction={"row"} spacing={8} style={{height:"500px"}}>
-                <Grid item={true} xs={3}>
-                    <Paper className="paper">
-                        <p>Login page ({this.props.username})</p>
-                        <button onClick={this.props.login}>Login</button>
-                    </Paper>
-                </Grid>
-                <Grid item={true} xs={3}>
-                    <Paper className="paper">
-                        <p>Login page ({this.props.username})</p>
-                        <button onClick={this.props.login}>Login</button>
-                    </Paper>
-                </Grid>
-                <Grid item={true} xs={3}>
-                    <Paper className="paper">
-                        <p>Login page ({this.props.username})</p>
-                        <button onClick={this.props.login}>Login</button>
-                    </Paper>
-                </Grid>
-                <Grid item={true} xs={3}>
+                <Grid item={true} xs={12}>
                     <Paper className="paper">
                         <p>Login page ({this.props.username})</p>
                         <button onClick={this.props.login}>Login</button>

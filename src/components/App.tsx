@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 // import * as action from '../store/actions/index';
 import Navigation from './Navigation';
 import Main from './Main';
+import Loader from './Loader';
+import { withRouter } from "react-router";
 
 // Interfaces:
 interface IState {
@@ -13,8 +15,8 @@ interface IState {
 }
 
 // Amit kapunk a store-ból
-const mapStateToProps = (state: any) => {
-  console.log("AppComponent: " + JSON.stringify(state))
+const mapStateToProps = (state: any, match: any) => {
+  // console.log("AppComponent: " + JSON.stringify(state))
   return {
     age: state.testreducer.age,
     loginstate: state.user.authenticate
@@ -46,14 +48,13 @@ class App extends React.Component<any, IState> {
 
   public render() {
     return (
-      <div className="container">
-        <div className="row">
-          <Navigation />
-          <Main />
-        </div>
+      <div className="container-fluid p-0">
+        <Loader />
+        <Navigation /> 
+        <Main />
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App as any))

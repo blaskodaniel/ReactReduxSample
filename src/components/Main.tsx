@@ -7,15 +7,13 @@ import About from './About';
 class MainComponent extends React.Component<any, any>{
     public render() {
         return (
-            <main>
-                <div className="row">
-                    <Switch>
-                        <Route path='/login' component={Login} />
-                        <Route path='/about' component={About} />
-                        <Route component={Home} />
-                    </Switch>
-                </div>
-            </main>
+            <div className="container-fluid">
+                <Switch>
+                    <Route exact={true} path="/" component={Home} />
+                    <Route path='/login' component={Login} />
+                    <Route path='/about' component={About} />
+                </Switch>
+            </div>
         )
     }
 }
